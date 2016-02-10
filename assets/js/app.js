@@ -15,11 +15,16 @@ todoApp.config(['$routeProvider',
 todoApp.controller('TodoCtrl', ['$scope', '$rootScope', 'TodoService', function($scope, $rootScope, TodoService) {
   $scope.formData = {};
   $scope.todos = [];
-
-  TodoService.getTodos().then(function(response) {
-    console.log(response);
-    $scope.todos = response;
-  })
+  $scope.todosAmount = "";
+  
+  var gettingTodos = function() {
+      TodoService.getTodos().then(function(response) {
+      console.log(response);
+      $scope.todos = response;
+      $scope.todosAmount = response.length;
+    })
+  }
+  gettingTodos();
 
   $scope.addTodo = function() {
     console.log($scope.formData);
@@ -28,6 +33,7 @@ todoApp.controller('TodoCtrl', ['$scope', '$rootScope', 'TodoService', function(
       $scope.todos.push($scope.formData)
       $scope.formData = {};
     })
+    gettingTodos();
   }
 
   $scope.removeTodo = function(todo) {
@@ -36,5 +42,14 @@ todoApp.controller('TodoCtrl', ['$scope', '$rootScope', 'TodoService', function(
       $scope.todos.splice($scope.todos.indexOf(todo), 1)
       console.log(response);
     })
+    gettingTodos();
   }
+
+  $scope.deleteAll = function() {
+    TodoService.removeAll().then(function(response) {
+      console.log(response)
+      gettingTodos();
+    })
+  }
+
 }])

@@ -16,5 +16,11 @@ module.exports = {
         TodoService.removeTodo(todoVal, function(success) {
             res.json(success)
         })
+    },
+    removeAll: function(req, res) {
+       var todoVal = (req.body.value) ? req.body.value : undefined
+        TodoService.removeAll(todoVal, function(success) {
+            res.json(success)
+        })
     }
 }

@@ -28,5 +28,14 @@ todoApp.service('TodoService', function($http, $q) {
         defer.reject(err);
       });
       return defer.promise;
+    },
+    'removeAll': function(next) {
+      var defer = $q.defer();
+      $http.post('/todo/removeAll', {}).success(function(resp){
+        defer.resolve(resp);
+      }).error( function(err) {
+        defer.reject(err);
+      });
+      return defer.promise;
     }
   }})

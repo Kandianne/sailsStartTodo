@@ -17,5 +17,11 @@ module.exports = {
       if(err) throw err;
       next(todo);
     })
+  },
+  removeAll: function(todoVal, next) {
+    Todo.destroy({}).exec(function(err, todo) {
+      if(err) throw err;
+      next(todo);
+    })
   }
 }

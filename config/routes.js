@@ -34,7 +34,8 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
+  'POST /todo/removeAll': {controller: "TodoController", action: "removeAll"}
 
   /***************************************************************************
   *                                                                          *

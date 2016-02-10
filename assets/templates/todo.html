@@ -1,6 +1,6 @@
 <div class="container" ng-controller="TodoCtrl">
     <div class="jumbotron">
-        <h1 align="center">Todo Application</h1>
+        <h1 align="center">You have {{todosAmount || "0"}} things to do today</h1>
         <br>
         <div id="todo-form" class="row">
             <div class="col-sm-8 col-sm-offset-2 text-center">
@@ -9,6 +9,7 @@
                         <input type="text" class="form-control input-lg text-center" placeholder="Add Todo!" ng-model="formData.value">
                         <br>
                         <button type="submit" class="btn btn-primary btn-lg" ng-click="addTodo()">Add Todo</button>
+                        <button type="button" class="btn btn-danger btn-lg" ng-click="deleteAll()">Delete All</button>
                     </div>
                 </form>
             </div>
